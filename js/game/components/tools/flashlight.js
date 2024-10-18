@@ -3,8 +3,8 @@ import { player } from "../player/player.js";
 import { isPointInBox } from "../boxes/boxes.js";
 
 export let flashlight = {
-  angle: Math.PI / 4,
-  radius: 400,
+  angle: Math.PI / 6,
+  radius: 200,
   rotation: 0,
 };
 
@@ -14,7 +14,7 @@ export function drawFlashlight() {
   ctx.beginPath();
   ctx.moveTo(centerX, centerY);
 
-  let steps = 1000;
+  let steps = 6000;
   for (
     let i = -flashlight.angle;
     i < flashlight.angle;
