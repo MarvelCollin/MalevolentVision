@@ -7,7 +7,7 @@ import { updateCamera, applyCameraTransform } from "./components/camera/camera.j
 
 function drawScene() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  applyCameraTransform();
+  applyCameraTransform(ctx);
   drawBoxes();
   drawPlayer();
   drawFlashlight();
@@ -15,12 +15,15 @@ function drawScene() {
 }
 
 function updateFlashlightRotation(e) {
-  const dx = e.clientX - (player.x + player.width / 2);
-  const dy = e.clientY - (player.y + player.height / 2);
+  const playerCenterX = canvas.width / 2;
+  const playerCenterY = canvas.height / 2;
+  const dx = e.clientX - playerCenterX;
+  const dy = e.clientY - playerCenterY;
   flashlight.rotation = Math.atan2(dy, dx);
 }
 
 window.addEventListener("mousemove", updateFlashlightRotation);
+
 
 setupInput();
 

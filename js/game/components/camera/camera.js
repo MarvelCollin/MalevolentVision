@@ -1,4 +1,4 @@
-import { ctx, canvas } from "../../ctx.js";
+import { canvas } from "../../ctx.js";
 import { player } from "../player/player.js";
 
 export let camera = {
@@ -11,6 +11,6 @@ export function updateCamera() {
   camera.y = player.y - canvas.height / 2 + player.height / 2;
 }
 
-export function applyCameraTransform() {
+export function applyCameraTransform(ctx) {
   ctx.setTransform(1, 0, 0, 1, -camera.x, -camera.y);
 }
