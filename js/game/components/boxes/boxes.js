@@ -5,7 +5,7 @@ import {
   randomHeightCanvas,
 } from "../helper/helper.js";
 
-export const boxes = Array.from({ length: 15 }, () => ({
+export const boxes = Array.from({ length: 20 }, () => ({
   x: randomWidthCanvas(),
   y: randomHeightCanvas(),
   width: getRandomInt(50, 200), 
@@ -17,6 +17,7 @@ export function drawBoxes() {
   boxes.forEach((box) => {
     ctx.fillRect(box.x, box.y, box.width, box.height);
   });
+  // console.log(boxes);
 }
 
 export function isPointInBox(x, y) {

@@ -1,5 +1,5 @@
 import { canvas } from "../../ctx.js";
-import { player } from "../player/player.js";
+import { player } from "../../game.js";
 
 export let camera = {
   x: 0,

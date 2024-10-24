@@ -1,6 +1,6 @@
 import { ctx, canvas } from "../../ctx.js";
-import { player } from "../player/player.js";
 import { isPointInBox } from "../boxes/boxes.js";
+import { player } from '../../game.js';
 
 export let flashlight = {
   angle: Math.PI / 10,
@@ -13,7 +13,7 @@ export function drawFlashlight(keys) {
 
   }
 
-  const centerX = player.x + player.width / 2;
+  const centerX = player.x + player.width / 4;
   const centerY = player.y + player.height / 2;
   ctx.beginPath();
   ctx.moveTo(centerX, centerY);
@@ -51,8 +51,8 @@ export function drawFlashlight(keys) {
   ctx.fill();
 
   ctx.globalCompositeOperation = "destination-over";
-  ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
-  ctx.fillRect(0, 0, window.innerWidth, canvas.innerHeight);
+  ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.globalCompositeOperation = "source-over";
 }
 
