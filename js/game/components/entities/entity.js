@@ -10,8 +10,8 @@ export class Entities {
     this.speed = speed;
   }
 
-  draw() {
-    ctx.fillStyle = "blue";
+  draw(color = "blue") {
+    ctx.fillStyle = color;
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 
@@ -55,8 +55,9 @@ export class Entities {
     if (!this.willCollide(this.x, newY)) {
       this.y = newY;
     }
+    // console.log(this.speed);
 
-    console.log(`x: ${this.x}, y: ${this.y}`);
+    // console.log(`x: ${this.x}, y: ${this.y}`);
   }
 }
 

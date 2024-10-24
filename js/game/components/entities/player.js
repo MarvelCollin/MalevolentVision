@@ -9,7 +9,7 @@ import { Entities } from './entity.js';
 // };
 
 export class Player extends Entities {
-    constructor(x, y){
-      super(x, y, 50, 50);
+    constructor(x, y, width, height, speed){
+      super(x, y, width, height, speed);
     }
 }

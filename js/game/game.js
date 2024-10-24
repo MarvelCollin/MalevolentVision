@@ -7,8 +7,8 @@ import { keys, setupInput } from "./components/listener/input.js";
 import { updateCamera, applyCameraTransform } from "./components/camera/camera.js";
 import { randomHeightCanvas, randomWidthCanvas } from "./components/helper/helper.js";
 
-export let player = new Player(canvas.width / 2, canvas.height / 2, 50, 50, 3);
-export let ghost = new Ghost(randomWidthCanvas, randomHeightCanvas);
+export let player = new Player(canvas.width / 2, canvas.height / 2, 50, 50, 8);
+export let ghost = new Ghost(canvas.width / 2 - 100, canvas.height / 2 - 100, 50, 50, 8, "red");
 
 function drawScene() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -28,7 +28,7 @@ function updateFlashlightRotation(e) {
   const playerCenterX = canvas.width / 4;
   const playerCenterY = canvas.height / 4;
   const dx = e.clientX - playerCenterX;
-  const dy = e.clientY - playerCenterY;
+  const dy = e.clientY - playerCenterY; 
   flashlight.rotation = Math.atan2(dy, dx);
 }
 

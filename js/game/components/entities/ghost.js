@@ -3,12 +3,17 @@ import { boxes } from "../boxes/boxes.js";
 import { Entities } from "./entity.js";
 
 export class Ghost extends Entities {
-  constructor(x, y) {
-    super(x, y, 50, 50);
+  constructor(x, y, width, height, speed, color) {
+    super(x, y, width, height, speed);
+    this.color = color;
   }
 
   draw() {
-    super.draw("red");
+    console.log("draw color : " + this.color);
+    console.log("asdhayisdhasudh");
+    ctx.fillStyle = this.color;
+    console.log("draw color : " + this.color);
+    ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 
   moveRandomly() {
@@ -19,16 +24,16 @@ export class Ghost extends Entities {
     switch (randomDirection) {
       case 0:
         newX -= this.speed;
-        break; 
+        break;
       case 1:
         newX += this.speed;
-        break; 
+        break;
       case 2:
         newY -= this.speed;
-        break; 
+        break;
       case 3:
         newY += this.speed;
-        break; 
+        break;
     }
 
     if (!this.willCollide(newX, this.y)) {
@@ -37,5 +42,19 @@ export class Ghost extends Entities {
     if (!this.willCollide(this.x, newY)) {
       this.y = newY;
     }
+  }
+
+  isPointInGhost(x, y) {
+    if (
+      x >= this.x &&
+      x <= this.x + this.width &&
+      y >= this.y &&
+      y <= this.y + this.height
+    ) {
+    //   console.log("kena semprot");
+      return true;
+    }
+    // console.log("gk kena bg");
+    return false;
   }
 }
