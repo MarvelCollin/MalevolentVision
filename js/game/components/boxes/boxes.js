@@ -1,12 +1,19 @@
 import { ctx } from "../../ctx.js";
+import {
+  getRandomInt,
+  randomWidthCanvas,
+  randomHeightCanvas,
+} from "../helper/helper.js";
 
-export const boxes = [
-  { x: 200, y: 200, width: 100, height: 100 },
-  { x: 400, y: 150, width: 150, height: 150 },
-];
+export const boxes = Array.from({ length: 15 }, () => ({
+  x: randomWidthCanvas(),
+  y: randomHeightCanvas(),
+  width: getRandomInt(50, 200), 
+  height: getRandomInt(50, 200),
+}));
 
 export function drawBoxes() {
-  ctx.fillStyle = "grey";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
   boxes.forEach((box) => {
     ctx.fillRect(box.x, box.y, box.width, box.height);
   });

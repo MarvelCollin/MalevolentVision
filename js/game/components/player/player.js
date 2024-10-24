@@ -55,3 +55,4 @@ export function movePlayer(keys) {
     player.y = newY;
   }
 }
+

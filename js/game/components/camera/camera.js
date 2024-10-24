@@ -7,8 +7,8 @@ export let camera = {
 };
 
 export function updateCamera() {
-  camera.x = player.x - canvas.width / 2 + player.width / 2;
-  camera.y = player.y - canvas.height / 2 + player.height / 2;
+  camera.x = player.x - canvas.width / 4;
+  camera.y = player.y - canvas.height / 4;
 }
 
 export function applyCameraTransform(ctx) {
