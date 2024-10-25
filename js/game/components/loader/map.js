@@ -39,7 +39,7 @@ export function drawTerrainChunks(player) {
   for (let [key, chunk] of loadedTerrainChunks) {
     const [x, y] = key.split(",").map(Number);
     if (Math.abs(chunkX - x) <= 1 && Math.abs(chunkY - y) <= 1) {
-      ctx.fillStyle = "rgba(255,255,255,1)";
+      ctx.fillStyle = "rgba(255,255,255,0.9)";
       ctx.fillRect(
         chunk.floor.x,
         chunk.floor.y,
