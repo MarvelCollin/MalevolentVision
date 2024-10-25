@@ -8,7 +8,7 @@ export class Player extends Entities {
     this.bullets = [];
     this.angle = 0;
     this.health = 80;
-    this.maxAmmo = 3;
+    this.maxAmmo = 10;
     this.currentAmmo = this.maxAmmo;
     this.lastShotTime = 0;
     this.shootCooldown = 1000;
@@ -81,8 +81,8 @@ export class Player extends Entities {
 
   updateAngle(event) {
     const rect = canvas.getBoundingClientRect();
-    const playerCenterX = canvas.width / 4;
-    const playerCenterY = canvas.height / 4;
+    const playerCenterX = canvas.width / 2;
+    const playerCenterY = canvas.height / 2;
     const mouseX = event.clientX - playerCenterX;
     const mouseY = event.clientY - playerCenterY;
     this.angle = Math.atan2(mouseY, mouseX);
@@ -136,7 +136,7 @@ export class Player extends Entities {
     }
   }
 
-  update() {
+  update(ghost) {
     const currentTime = Date.now();
     if (this.dashing) {
       if (currentTime - this.dashStartTime <= this.dashDuration) {
@@ -149,7 +149,18 @@ export class Player extends Entities {
     }
 
     this.bullets = this.bullets.filter((bullet) => bullet.active);
-    this.bullets.forEach((bullet) => bullet.update());
+    this.bullets.forEach((bullet) => {
+      bullet.update();
+      if (ghost.isHit(bullet)) {
+        ghost.disableForSeconds(3);
+        bullet.active = false;
+      }
+    });
+
+    if (ghost.isCollidingWithPlayer(this)) {
+      this.health -= 10;
+      console.log("Player health:", this.health);
+    }
   }
 
   drawDashShadow() {

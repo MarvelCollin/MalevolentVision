@@ -1,14 +1,17 @@
+// camera.js
 import { canvas } from "../../ctx.js";
 import { player } from "../../game.js";
 
 export let camera = {
   x: 0,
   y: 0,
+  width: canvas.width,
+  height: canvas.height,
 };
 
 export function updateCamera() {
-  camera.x = player.x - canvas.width / 4;
-  camera.y = player.y - canvas.height / 4;
+  camera.x = player.x - camera.width / 2;
+  camera.y = player.y - camera.height / 2;
 }
 
 export function applyCameraTransform(ctx) {

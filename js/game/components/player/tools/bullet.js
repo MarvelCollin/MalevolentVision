@@ -29,10 +29,6 @@ export class Bullet {
     }
 
     if (
-      this.x - this.width < 0 ||
-      this.x + this.width > canvas.width ||
-      this.y - this.height < 0 ||
-      this.y + this.height > canvas.height ||
       this.willCollide(this.x, this.y)
     ) {
       this.move = false;

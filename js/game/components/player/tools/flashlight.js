@@ -9,6 +9,7 @@ export class Flashlight {
     this.radius = 700;
     this.rotation = 0;
     this.isOn = true;
+    this.steps = 300; 
 
     window.addEventListener("keydown", this.handleKeyPress.bind(this));
   }
@@ -42,17 +43,23 @@ export class Flashlight {
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
 
-    const steps = 700;
-    const angleStep = (this.angle * 2) / steps;
+    const angleStep = (this.angle * 2) / this.steps;
+    const cosSinCache = [];
 
-    for (let i = -this.angle; i < this.angle; i += angleStep) {
-      const angle = this.rotation + i;
+    for (let i = 0; i < this.steps; i++) {
+      const angle = this.rotation + (-this.angle + angleStep * i);
+
+      if (!cosSinCache[i]) {
+        cosSinCache[i] = { cos: Math.cos(angle), sin: Math.sin(angle) };
+      }
+
+      const { cos, sin } = cosSinCache[i];
       let x = centerX;
       let y = centerY;
 
-      for (let r = 0; r < this.radius; r++) {
-        const nextX = centerX + r * Math.cos(angle);
-        const nextY = centerY + r * Math.sin(angle);
+      for (let r = 0; r < this.radius; r += 1) {
+        const nextX = centerX + r * cos;
+        const nextY = centerY + r * sin;
 
         if (ghost.isPointInGhost(nextX, nextY)) {
           ghostHit = true;
@@ -87,8 +94,8 @@ export class Flashlight {
   }
 
   updateFlashlightRotation(e) {
-    const playerCenterX = canvas.width / 4;
-    const playerCenterY = canvas.height / 4;
+    const playerCenterX = canvas.width / 2;
+    const playerCenterY = canvas.height / 2;
     const dx = e.x - playerCenterX;
     const dy = e.y - playerCenterY;
     flashlight.rotation = Math.atan2(dy, dx);
