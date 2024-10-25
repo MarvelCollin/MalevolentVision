@@ -1,35 +1,41 @@
-import { ctx, canvas } from '../../../ctx.js';
-import { boxes } from '../../boxes/boxes.js';
+import { ctx, canvas } from "../../../ctx.js";
+import { boxes } from "../../boxes/boxes.js";
 
 export class Bullet {
-  constructor(x, y, speed, direction) {
+  constructor(x, y, speed, direction, width, height) {
     this.x = x;
     this.y = y;
     this.speed = speed;
     this.direction = direction;
+    this.width = 3;
+    this.height = 3;
     this.active = true;
     this.move = true;
     this.duration = 500;
   }
 
-  move(){
+  moving() {
     this.x += this.speed * Math.cos(this.direction);
     this.y += this.speed * Math.sin(this.direction);
   }
 
   update() {
-
-    // console.log("x : " + this.x + " | y : " + this.y);
-    
+    if (this.move) {
+      this.moving();
+    } else {
+      setTimeout(() => {
+        this.active = false;
+      }, 5000);
+    }
 
     if (
-      this.x < 0 ||
-      this.x > canvas.width ||
-      this.y < 0 ||
-      this.y > canvas.height ||
+      this.x - this.width < 0 ||
+      this.x + this.width > canvas.width ||
+      this.y - this.height < 0 ||
+      this.y + this.height > canvas.height ||
       this.willCollide(this.x, this.y)
     ) {
-      this.active = false;
+      this.move = false;
     }
   }
 
@@ -43,17 +49,18 @@ export class Bullet {
   willCollide(newX, newY) {
     const nextPosition = {
       x: newX,
-      y: newY
+      y: newY,
+      width: this.width,
+      height: this.height,
     };
 
     for (let box of boxes) {
       if (
         nextPosition.x < box.x + box.width &&
-        nextPosition.x > box.x &&
+        nextPosition.x + nextPosition.width > box.x &&
         nextPosition.y < box.y + box.height &&
-        nextPosition.y > box.y
+        nextPosition.y + nextPosition.height > box.y
       ) {
-        // console.log("iajsdiasd");
         return true;
       }
     }

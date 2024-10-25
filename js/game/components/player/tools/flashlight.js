@@ -1,75 +1,98 @@
 import { ctx, canvas } from "../../../ctx.js";
 import { isPointInBox } from "../../boxes/boxes.js";
-import { player } from '../../../game.js';
-import { ghost } from '../../../game.js';
+import { player } from "../../../game.js";
+import { ghost } from "../../../game.js";
 
+export class Flashlight {
+  constructor() {
+    this.angle = Math.PI / 10;
+    this.radius = 700;
+    this.rotation = 0;
+    this.isOn = true;
 
-export let flashlight = {
-  angle: Math.PI / 10,
-  radius: 700,
-  rotation: 0,
-};
+    window.addEventListener("keydown", this.handleKeyPress.bind(this));
+  }
 
-export function drawFlashlight(keys) {
-  if (keys) {
-    if (keys["ArrowLeft"]) {
-      flashlight.rotation -= 0.05;
-    } else if (keys["ArrowRight"]) {
-      flashlight.rotation += 0.05;
+  handleKeyPress(event) {
+    if (event.key.toLowerCase() === "f") {
+      this.toggle();
     }
   }
 
-  const centerX = player.x + player.width / 4;
-  const centerY = player.y + player.height / 2;
-  let ghostHit = false;
+  toggle() {
+    this.isOn = !this.isOn;
+  }
 
-  ctx.beginPath();
-  ctx.moveTo(centerX, centerY);
+  updateRotation(keys) {
+    if (keys?.ArrowLeft) {
+      this.rotation -= 0.05;
+    } else if (keys?.ArrowRight) {
+      this.rotation += 0.05;
+    }
+  }
 
-  const steps = 700;
-  const angleStep = (flashlight.angle * 2) / steps;
+  draw(keys) {
+    if (!this.isOn) return;
 
-  for (let i = -flashlight.angle; i < flashlight.angle; i += angleStep) {
-    const angle = flashlight.rotation + i;
-    let x = centerX;
-    let y = centerY;
+    this.updateRotation(keys);
+    const centerX = player.x + player.width / 4;
+    const centerY = player.y + player.height / 2;
+    let ghostHit = false;
 
-    for (let r = 0; r < flashlight.radius; r += 1) {
-      let nextX = centerX + r * Math.cos(angle);
-      let nextY = centerY + r * Math.sin(angle);
-      
-      if (ghost.isPointInGhost(nextX, nextY)) {
-        ghostHit = true;
-        ghost.color = "green";
-        // break;
-      }
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
 
-      if (isPointInBox(nextX, nextY)) {
+    const steps = 700;
+    const angleStep = (this.angle * 2) / steps;
+
+    for (let i = -this.angle; i < this.angle; i += angleStep) {
+      const angle = this.rotation + i;
+      let x = centerX;
+      let y = centerY;
+
+      for (let r = 0; r < this.radius; r++) {
+        const nextX = centerX + r * Math.cos(angle);
+        const nextY = centerY + r * Math.sin(angle);
+
+        if (ghost.isPointInGhost(nextX, nextY)) {
+          ghostHit = true;
+          ghost.color = "green";
+        }
+
+        if (isPointInBox(nextX, nextY)) {
+          x = nextX;
+          y = nextY;
+          break;
+        }
+
         x = nextX;
         y = nextY;
-        break;
       }
 
-      x = nextX;
-      y = nextY;
+      ctx.lineTo(x, y);
     }
 
-    ctx.lineTo(x, y);
+    ghost.color = ghostHit ? "green" : "red";
+
+    ctx.lineTo(centerX, centerY);
+    ctx.closePath();
+
+    ctx.fillStyle = "rgba(182, 189, 12, 0.5)";
+    ctx.fill();
+
+    ctx.globalCompositeOperation = "destination-over";
+    ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.globalCompositeOperation = "source-over";
   }
 
-  if (!ghostHit) {
-    // ghost.color = "rgba(0,0,0,0)";
-    ghost.color = "red";
+  updateFlashlightRotation(e) {
+    const playerCenterX = canvas.width / 4;
+    const playerCenterY = canvas.height / 4;
+    const dx = e.x - playerCenterX;
+    const dy = e.y - playerCenterY;
+    flashlight.rotation = Math.atan2(dy, dx);
   }
-
-  ctx.lineTo(centerX, centerY);
-  ctx.closePath();
-
-  ctx.fillStyle = "rgba(182, 189, 12, 0.5)";
-  ctx.fill();
-
-  ctx.globalCompositeOperation = "destination-over";
-  ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.globalCompositeOperation = "source-over";
 }
+
+export const flashlight = new Flashlight();
