@@ -1,7 +1,7 @@
-import { ctx, canvas } from "../../ctx.js";
-import { isPointInBox } from "../boxes/boxes.js";
-import { player } from '../../game.js';
-import { ghost } from '../../game.js';
+import { ctx, canvas } from "../../../ctx.js";
+import { isPointInBox } from "../../boxes/boxes.js";
+import { player } from '../../../game.js';
+import { ghost } from '../../../game.js';
 
 
 export let flashlight = {
@@ -26,7 +26,7 @@ export function drawFlashlight(keys) {
   ctx.beginPath();
   ctx.moveTo(centerX, centerY);
 
-  const steps = 1000;
+  const steps = 700;
   const angleStep = (flashlight.angle * 2) / steps;
 
   for (let i = -flashlight.angle; i < flashlight.angle; i += angleStep) {
@@ -50,7 +50,6 @@ export function drawFlashlight(keys) {
         break;
       }
 
-
       x = nextX;
       y = nextY;
     }
@@ -59,6 +58,7 @@ export function drawFlashlight(keys) {
   }
 
   if (!ghostHit) {
+    // ghost.color = "rgba(0,0,0,0)";
     ghost.color = "red";
   }
 

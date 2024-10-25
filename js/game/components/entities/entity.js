@@ -30,6 +30,7 @@ export class Entities {
         nextPosition.y < box.y + box.height &&
         nextPosition.y + nextPosition.height > box.y
       ) {
+        // console.log("iajsdiasd");
         return true;
       }
     }
@@ -38,6 +39,7 @@ export class Entities {
   }
 
   move(keys) {
+    // console.log("tidal tembus")
     const newX = keys["a"]
       ? this.x - this.speed
       : keys["d"]

@@ -1,11 +1,20 @@
+import { canvas } from "../../ctx.js";
+
 export const keys = {};
+export let clientMouse = { x: 0, y: 0 };
 
 export function setupInput() {
   window.addEventListener("keydown", function (e) {
-    keys[e.key] = true;
+    keys[e.key.toLowerCase()] = true;
   });
 
   window.addEventListener("keyup", function (e) {
-    keys[e.key] = false;
+    keys[e.key.toLowerCase()] = false;
+  });
+
+  window.addEventListener("mousemove", (event) => {
+    const rect = canvas.getBoundingClientRect();
+    clientMouse.x = event.clientX - rect.left;
+    clientMouse.y = event.clientY - rect.top;
   });
 }

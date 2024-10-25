@@ -3,7 +3,7 @@ import {
   getRandomInt,
   randomWidthCanvas,
   randomHeightCanvas,
-} from "../helper/helper.js";
+} from "../helper/random.js";
 
 export const boxes = Array.from({ length: 20 }, () => ({
   x: randomWidthCanvas(),
