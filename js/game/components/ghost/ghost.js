@@ -88,11 +88,9 @@ export class Ghost extends Entities {
      ctx.fillStyle = "black";
      ctx.fillRect(this.x, this.y, this.width, this.height);
    } else {
-     // Draw the asset image when `active` is false
      if (this.image.complete) {
        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
      } else {
-       // Load the image and draw it once ready
        this.image.onload = () => {
          ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
        };

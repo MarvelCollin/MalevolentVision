@@ -2,14 +2,15 @@ import { ctx, canvas } from "../../../ctx.js";
 import { isPointInBox } from "../../boxes/boxes.js";
 import { player } from "../../../game.js";
 import { ghost } from "../../../game.js";
+import { flashlightSetting } from "../../../setting.js";
 
 export class Flashlight {
   constructor() {
-    this.angle = Math.PI / 10;
-    this.radius = 700;
-    this.rotation = 0;
-    this.isOn = true;
-    this.steps = 80; 
+    this.angle = flashlightSetting.angle;
+    this.radius = flashlightSetting.radius;
+    this.rotation = flashlightSetting.rotation;
+    this.isOn = flashlightSetting.isOn;
+    this.steps = flashlightSetting.steps; 
 
     window.addEventListener("keydown", this.handleKeyPress.bind(this));
   }

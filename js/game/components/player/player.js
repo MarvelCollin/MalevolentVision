@@ -1,6 +1,7 @@
 import { Bullet } from "./tools/bullet.js";
 import { Entities } from "../entities/entity.js";
 import { ctx, canvas } from "../../ctx.js";
+import { playerSetting } from "../../setting.js";
 
 export class Player extends Entities {
   constructor(x, y, width, height, speed) {
@@ -8,16 +9,16 @@ export class Player extends Entities {
     this.bullets = [];
     this.angle = 0;
     this.health = 100;
-    this.maxAmmo = 10;
+    this.maxAmmo = playerSetting.maxAmmo;
     this.currentAmmo = this.maxAmmo;
     this.lastShotTime = 0;
-    this.shootCooldown = 1000;
-    this.dashSpeed = 20;
-    this.dashDuration = 200;
+    this.shootCooldown = playerSetting.shootCooldown;
+    this.dashSpeed = playerSetting.dashSpeed;
+    this.dashDuration = playerSetting.dashDuration;
     this.dashing = false;
     this.dashStartTime = 0;
     this.dashDirection = { x: 0, y: 0 };
-    this.dashCooldown = 1000;
+    this.dashCooldown = playerSetting.dashCooldown;
     this.lastDashTime = 0;
     this.dashShadowOpacity = 0.5;
     this.keySequence = {};
@@ -143,8 +144,10 @@ export class Player extends Entities {
         this.y + this.dashDirection.y * 15
       )
     ) {
+      console.log("gabisa king")
       this.dashing = false;
     }
+
     const currentTime = Date.now();
     if (this.dashing) {
       if (currentTime - this.dashStartTime <= this.dashDuration) {
@@ -167,7 +170,7 @@ export class Player extends Entities {
 
     if (ghost.isCollidingWithPlayer(this)) {
       this.health -= 10;
-      console.log("Player health:", this.health);
+      // console.log("Player health:", this.health);
     }
   }
 
