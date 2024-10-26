@@ -25,13 +25,12 @@ export let ghost = new Ghost(
 );
 
 function updateHealthBar() {
-  const healthBarFill = document.getElementById("health-bar-fill");
-  healthBarFill.style.width = `${player.health}%`;
+      const healthBarFill = document.getElementById("health-bar-fill");
+      healthBarFill.style.width = `${player.health}%`;
 }
 
 
 function drawScene() {
-  // Clear the entire canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   applyCameraTransform(ctx);

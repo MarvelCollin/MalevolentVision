@@ -7,7 +7,7 @@ export class Player extends Entities {
     super(x, y, width, height, speed);
     this.bullets = [];
     this.angle = 0;
-    this.health = 80;
+    this.health = 100;
     this.maxAmmo = 10;
     this.currentAmmo = this.maxAmmo;
     this.lastShotTime = 0;
@@ -137,6 +137,14 @@ export class Player extends Entities {
   }
 
   update(ghost) {
+    if (
+      this.willCollide(
+        this.x + this.dashDirection.x * 15,
+        this.y + this.dashDirection.y * 15
+      )
+    ) {
+      this.dashing = false;
+    }
     const currentTime = Date.now();
     if (this.dashing) {
       if (currentTime - this.dashStartTime <= this.dashDuration) {

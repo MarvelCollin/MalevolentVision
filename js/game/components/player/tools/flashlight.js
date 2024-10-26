@@ -9,7 +9,7 @@ export class Flashlight {
     this.radius = 700;
     this.rotation = 0;
     this.isOn = true;
-    this.steps = 300; 
+    this.steps = 80; 
 
     window.addEventListener("keydown", this.handleKeyPress.bind(this));
   }
@@ -80,6 +80,7 @@ export class Flashlight {
     }
 
     ghost.color = ghostHit ? "green" : "red";
+    // ghost.color = ghostHit ? "green" : "rgba(0,0,0,0)";
 
     ctx.lineTo(centerX, centerY);
     ctx.closePath();

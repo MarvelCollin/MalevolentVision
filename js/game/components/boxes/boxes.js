@@ -5,10 +5,8 @@ const CHUNK_SIZE = 1000;
 
 let loadedChunks = new Map();
 
-// Global array to store all boxes
 export let boxes = [];
 
-// Function to generate a chunk with boxes
 function generateChunk(chunkX, chunkY) {
   const chunkBoxes = Array.from({ length: 4 }, () => {
     const box = {
@@ -17,7 +15,6 @@ function generateChunk(chunkX, chunkY) {
       width: getRandomInt(50, 200),
       height: getRandomInt(50, 200),
     };
-    // Add the box to the global boxes array
     boxes.push(box);
     return box;
   });

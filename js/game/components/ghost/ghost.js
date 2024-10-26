@@ -13,8 +13,45 @@ export class Ghost extends Entities {
     this.setRandomPassThrough = this.setRandomPassThrough.bind(this);
     this.setRandomBehavior = this.setRandomBehavior.bind(this);
 
+    this.image = new Image();
+    this.image.src = "../../../../assets/Layer 19.png";
+    this.width = this.image.width * 3;
+    this.height = this.image.height * 3;
+
     this.setRandomPassThrough();
     this.setRandomBehavior();
+  }
+
+  getColor() {
+    return this.color;
+  }
+
+  setColor(color) {
+    this.color = color;
+  }
+
+  getCanPassThrough() {
+    return this.canPassThrough;
+  }
+
+  setCanPassThrough(canPassThrough) {
+    this.canPassThrough = canPassThrough;
+  }
+
+  getActive() {
+    return this.active;
+  }
+
+  setActive(active) {
+    this.active = active;
+  }
+
+  getChasingTarget() {
+    return this.chasingTarget;
+  }
+
+  setChasingTarget(chashingTarget) {
+    this.chasingTarget = chasingTarget;
   }
 
   setRandomPassThrough = () => {
@@ -47,12 +84,20 @@ export class Ghost extends Entities {
   };
 
   draw() {
-    if (this.active) {
-      ctx.fillStyle = "black";
-    } else {
-      ctx.fillStyle = this.color;
-    }
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+   if (this.active) {
+     ctx.fillStyle = "black";
+     ctx.fillRect(this.x, this.y, this.width, this.height);
+   } else {
+     // Draw the asset image when `active` is false
+     if (this.image.complete) {
+       ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+     } else {
+       // Load the image and draw it once ready
+       this.image.onload = () => {
+         ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+       };
+     }
+   }
   }
 
   moveToTarget(targetX, targetY) {
