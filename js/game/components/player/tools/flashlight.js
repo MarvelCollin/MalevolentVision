@@ -8,7 +8,7 @@ export class Flashlight {
   constructor() {
     this.angle = flashlightSetting.angle;
     this.radius = flashlightSetting.radius;
-    this.rotation = flashlightSetting.rotation;
+    this.rotation = 0;
     this.isOn = flashlightSetting.isOn;
     this.steps = flashlightSetting.steps; 
 

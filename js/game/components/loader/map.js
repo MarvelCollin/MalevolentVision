@@ -1,7 +1,8 @@
 import { ctx } from "../../ctx.js";
 import { getRandomInt } from "../helper/random.js";
+import { map } from "../../setting.js"
 
-const CHUNK_SIZE = 1000;
+const CHUNK_SIZE = map.chunkSize;
 let loadedTerrainChunks = new Map();
 
 function generateTerrainChunk(chunkX, chunkY) {

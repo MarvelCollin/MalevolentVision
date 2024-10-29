@@ -24,6 +24,16 @@ export class Player extends Entities {
     this.keySequence = {};
     this.doublePressThreshold = 250;
 
+    this.sprites = [];
+    this.currentFrame = 0;
+    this.frameTime = 100; // Time per frame in milliseconds
+    this.lastFrameTime = Date.now();
+
+    this.gunImage = new Image();
+    this.gunImage.src = "../../../../assets/gun/gun.png";
+
+    this.loadSprites();
+
     window.addEventListener("mousedown", this.handleMouseDown.bind(this));
     window.addEventListener("mousemove", this.handleMouseMove.bind(this));
     window.addEventListener("keydown", this.handleKeyDown.bind(this));
@@ -78,6 +88,23 @@ export class Player extends Entities {
         this.keySequence[key].lastKeyUpTime = currentTime;
       }
     }
+  }
+
+  drawGun() {
+    ctx.save();
+    const playerCenterX = this.x + this.width / 2;
+    const playerCenterY = this.y + this.height / 2;
+
+    ctx.translate(playerCenterX, playerCenterY);
+    ctx.rotate(this.angle);
+    ctx.drawImage(
+      this.gunImage,
+      -this.gunImage.width / 2,
+      -this.gunImage.height / 2,
+      this.gunImage.width * 3,
+      this.gunImage.height * 3
+    );
+    ctx.restore();
   }
 
   updateAngle(event) {
@@ -137,6 +164,22 @@ export class Player extends Entities {
     }
   }
 
+  loadSprites() {
+    for (let i = 1; i <= 8; i++) {
+      const img = new Image();
+      img.src = `../../../../assets/player/walk/left/player_gun_walk_${i}.png`;
+      this.sprites.push(img);
+    }
+  }
+
+  updateFrame() {
+    const currentTime = Date.now();
+    if (currentTime - this.lastFrameTime >= this.frameTime) {
+      this.currentFrame = (this.currentFrame + 1) % this.sprites.length;
+      this.lastFrameTime = currentTime;
+    }
+  }
+
   update(ghost) {
     if (
       this.willCollide(
@@ -144,7 +187,7 @@ export class Player extends Entities {
         this.y + this.dashDirection.y * 15
       )
     ) {
-      console.log("gabisa king")
+      console.log("gabisa king");
       this.dashing = false;
     }
 
@@ -183,7 +226,19 @@ export class Player extends Entities {
   }
 
   draw() {
-    super.draw();
+    // super.draw();
     this.bullets.forEach((bullet) => bullet.draw());
+
+    // Draw the player sprite animation
+    this.updateFrame();
+    ctx.drawImage(
+      this.sprites[this.currentFrame],
+      this.x - (this.width * 3) / 2,
+      this.y - (this.height * 3) / 2,
+      this.width * 3,
+      this.height * 3
+    );
+
+    this.drawGun();
   }
 }
