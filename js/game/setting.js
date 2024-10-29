@@ -19,10 +19,26 @@ export const flashlightSetting = {
     isOn : true,
     steps : 80,
     rotationSpeed : 0.05
-    
 }
 
 export const map = {
     chunkSize : 1000
 }
 
+export async function loadAssets() {
+  const response = await fetch("../assets/assets_connector.json");
+  const assets = await response.json();
+
+  return assets; 
+}
+
+
+export class Asset{
+  constructor(){
+    this.asset = loadAssets();
+  }
+
+  getAsset(){
+    return this.asset;
+  }
+}
