@@ -34,6 +34,7 @@ export class Flashlight {
   }
 
   draw(keys) {
+    // console.log(player.x)
     if (!this.isOn) return;
 
     this.updateRotation(keys);

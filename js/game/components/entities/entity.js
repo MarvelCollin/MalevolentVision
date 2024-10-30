@@ -10,6 +10,26 @@ export class Entities {
     this.speed = speed;
   }
 
+  getEntityX(){
+    return this.x;
+  }
+
+  getEntityY(){
+    return this.y;
+  }
+
+  getEntityWidth(){
+    return this.width;
+  }
+
+  getEntityHeight(){
+    return this.height;
+  }
+
+  getEntitySpeed(){
+    return this.speed;
+  }
+
   draw(color = "blue") {
     ctx.fillStyle = color;
     ctx.fillRect(this.x, this.y, this.width, this.height);

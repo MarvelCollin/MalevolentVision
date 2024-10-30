@@ -1,29 +1,71 @@
 import { playerSetting } from "../../../setting.js";
+import { ctx, canvas } from "../../../ctx.js";
 import { Bullet } from "../tools/bullet.js";
 
 export class PlayerShooting {
   constructor(player) {
     this.player = player;
+
     this.bullets = [];
+    this.gunImage = new Image();
+    this.gunImage.src = "../../../../assets/gun/gun.png";
+    this.maxAmmo = playerSetting.maxAmmo;
+    this.currentAmmo = this.maxAmmo;
     this.lastShotTime = 0;
-    this.currentAmmo = playerSetting.maxAmmo;
+    this.shootCooldown = playerSetting.shootCooldown;
+  }
+
+  getGunImage() {
+    return this.gunImage;
+  }
+
+  getMaxAmmo() {
+    return this.maxAmmo;
+  }
+
+  getCurrentAmmo() {
+    return this.currentAmmo;
+  }
+
+  getLastShotTime() {
+    return this.lastShotTime;
+  }
+
+  getShootCooldown() {
+    return this.shootCooldown;
   }
 
   handleMouseDown(event) {
-    if (event.button === 0) this.shoot();
+    if (event.button === 0) {
+      this.shoot();
+    }
+  }
+
+  updateAngle(event) {
+    const rect = canvas.getBoundingClientRect();
+    const playerCenterX = canvas.width / 2;
+    const playerCenterY = canvas.height / 2;
+    const mouseX = event.clientX - playerCenterX;
+    const mouseY = event.clientY - playerCenterY;
+    const currentAngle = Math.atan2(mouseY, mouseX);
+    this.player.setAngle(currentAngle);
+  }
+
+  handleMouseMove(event) {
+    this.updateAngle(event);
   }
 
   shoot() {
     const currentTime = Date.now();
     if (
-      currentTime - this.lastShotTime >= playerSetting.shootCooldown &&
+      currentTime - this.lastShotTime >= this.shootCooldown &&
       this.currentAmmo > 0
     ) {
       const bullet = new Bullet(
-        this.player.x + this.player.width / 2,
-        this.player.y + this.player.height / 2,
+        this.x + this.width / 2,
+        this.y + this.height / 2,
         60,
-        this.player.angle,
+        this.player.getAngle(),
         3,
         3
       );
@@ -34,10 +76,10 @@ export class PlayerShooting {
   }
 
   reload() {
-    this.currentAmmo = playerSetting.maxAmmo;
+    this.currentAmmo = this.maxAmmo;
   }
 
-  updateBullets(ghost) {
+  updateGun(ghost) {
     this.bullets = this.bullets.filter((bullet) => bullet.active);
     this.bullets.forEach((bullet) => {
       bullet.update();
@@ -46,5 +88,28 @@ export class PlayerShooting {
         bullet.active = false;
       }
     });
+  }
+
+  drawEachBullet() {
+    this.bullets.forEach((bullet) => bullet.draw());
+  }
+
+  drawGun() {
+    ctx.save();
+    const playerCenterX =
+      this.player.getEntityX() + this.player.getEntityWidth() / 2;
+    const playerCenterY = this.player.y + this.player.getEntityHeight() / 2;
+
+    // ctx.translate(playerCenterX,playerCenterY);
+    
+    ctx.rotate(this.player.getAngle());
+    ctx.drawImage(
+      this.gunImage,
+      playerCenterX - this.gunImage.width * 3,
+      playerCenterY - this.gunImage.height * 3,
+      this.gunImage.width * 3,
+      this.gunImage.height * 3
+    );
+    ctx.restore();
   }
 }
