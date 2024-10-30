@@ -34,7 +34,6 @@ function drawScene() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   applyCameraTransform(ctx);
-
   
   loadTerrainChunks(player);
   drawTerrainChunks(player);

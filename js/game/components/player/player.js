@@ -3,18 +3,16 @@ import { PlayerShooting } from "./utils/playerShooting.js";
 import { PlayerAssets } from "./utils/playerAssets.js";
 import { PlayerRendering } from "./utils/playerRendering.js";
 import { canvas, ctx } from "../../ctx.js";
+import { Entities } from '../entities/entity.js';
 
-export class Player {
+export class Player extends Entities {
   constructor(x, y, width, height, speed) {
+    super(x, y, width, height, speed);
     this.movement = new PlayerMovement(this, speed);
     this.shooting = new PlayerShooting(this);
     this.assets = new PlayerAssets(this);
     this.rendering = new PlayerRendering(this);
 
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
     this.angle = 0;
     this.health = 100;
 
@@ -31,6 +29,22 @@ export class Player {
       "keyup",
       this.movement.handleKeyUp.bind(this.movement)
     );
+  }
+
+  getMovement(){
+    return this.movement;
+  }
+
+  getShooting(){
+    return this.shooting;
+  }
+
+  getAssets(){
+    return this.assets;
+  }
+
+  getRendering(){
+    return this.rendering;
   }
 
   updateAngle(event) {
