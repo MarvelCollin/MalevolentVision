@@ -95,8 +95,8 @@ export class Player extends Entities {
     this.updateFrame();
     ctx.drawImage(
       this.sprites[this.currentFrame],
-      getMidPosition(this.x, this.width * 3),
-      getMidPosition(this.y, this.height * 3),
+      getMidPosition(this.x, this.width / 2* 3),
+      getMidPosition(this.y, this.height / 2* 3),
       this.width * 3,
       this.height * 3 
     );

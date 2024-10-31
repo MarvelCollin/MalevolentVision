@@ -13,11 +13,7 @@ export class PlayerMovement {
     this.dashShadowOpacity = 0.5;
     this.keySequence = {};
     this.doublePressThreshold = 250;
-
-
   }
-
-
 
   getDashSpeed(){
     return this.dashSpeed;

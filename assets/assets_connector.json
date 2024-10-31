@@ -2,16 +2,46 @@
   "player": {
     "walk": {
       "left": [
-        "../assets/player/walk/left/player_gun_walk_1.png",
-        "../assets/player/walk/left/player_gun_walk_2.png",
-        "../assets/player/walk/left/player_gun_walk_3.png",
-        "../assets/player/walk/left/player_gun_walk_4.png",
-        "../assets/player/walk/left/player_gun_walk_5.png",
-        "../assets/player/walk/left/player_gun_walk_6.png",
-        "../assets/player/walk/left/player_gun_walk_7.png",
-        "../assets/player/walk/left/player_gun_walk_8.png"
+        "../assets/player/walk/left/left_1.png",
+        "../assets/player/walk/left/left_2.png",
+        "../assets/player/walk/left/left_3.png",
+        "../assets/player/walk/left/left_4.png",
+        "../assets/player/walk/left/left_5.png",
+        "../assets/player/walk/left/left_6.png",
+        "../assets/player/walk/left/left_7.png",
+        "../assets/player/walk/left/left_8.png"
+      ],
+      "right": [
+        "../assets/player/walk/right/right_1.png",
+        "../assets/player/walk/right/right_2.png",
+        "../assets/player/walk/right/right_3.png",
+        "../assets/player/walk/right/right_4.png",
+        "../assets/player/walk/right/right_5.png",
+        "../assets/player/walk/right/right_6.png",
+        "../assets/player/walk/right/right_7.png",
+        "../assets/player/walk/right/right_8.png"
+      ],
+      "up": [
+        "../assets/player/walk/up/up_1.png",
+        "../assets/player/walk/up/up_2.png",
+        "../assets/player/walk/up/up_3.png",
+        "../assets/player/walk/up/up_4.png",
+        "../assets/player/walk/up/up_5.png",
+        "../assets/player/walk/up/up_6.png",
+        "../assets/player/walk/up/up_7.png",
+        "../assets/player/walk/up/up_8.png"
+      ],
+      "down": [
+        "../assets/player/walk/down/down_1.png",
+        "../assets/player/walk/down/down_2.png",
+        "../assets/player/walk/down/down_3.png",
+        "../assets/player/walk/down/down_4.png",
+        "../assets/player/walk/down/down_5.png",
+        "../assets/player/walk/down/down_6.png",
+        "../assets/player/walk/down/down_7.png",
+        "../assets/player/walk/down/down_8.png"
       ]
-    }
+    } 
   },
   "gun": {
     "default": "../assets/gun/gun.png"

@@ -91,25 +91,28 @@ export class PlayerShooting {
   }
 
   drawEachBullet() {
-    this.bullets.forEach((bullet) => bullet.draw());
+    this.bullets.forEach(    (bullet) => bullet.draw());
   }
 
   drawGun() {
     ctx.save();
+
     const playerCenterX =
       this.player.getEntityX() + this.player.getEntityWidth() / 2;
-    const playerCenterY = this.player.y + this.player.getEntityHeight() / 2;
+    const playerCenterY =
+      this.player.getEntityY() + this.player.getEntityHeight() / 2;
 
-    // ctx.translate(playerCenterX,playerCenterY);
-    
+    ctx.translate(playerCenterX, playerCenterY);
     ctx.rotate(this.player.getAngle());
+
     ctx.drawImage(
       this.gunImage,
-      playerCenterX - this.gunImage.width * 3,
-      playerCenterY - this.gunImage.height * 3,
+      -this.gunImage.width ,
+      -this.gunImage.height ,
       this.gunImage.width * 3,
       this.gunImage.height * 3
     );
+
     ctx.restore();
   }
 }
