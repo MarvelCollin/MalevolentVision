@@ -1,6 +1,7 @@
 import { canvas, ctx } from "../../ctx.js";
 import { boxes } from "../boxes/boxes.js";
 import { Entities } from "../entities/entity.js";
+import { Assets } from "../loader/assets.js";
 
 export class Ghost extends Entities {
   constructor(x, y, width, height, speed, color) {
@@ -84,18 +85,18 @@ export class Ghost extends Entities {
   };
 
   draw() {
-   if (this.active) {
-     ctx.fillStyle = "black";
-     ctx.fillRect(this.x, this.y, this.width, this.height);
-   } else {
-     if (this.image.complete) {
-       ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-     } else {
-       this.image.onload = () => {
-         ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-       };
-     }
-   }
+    if (this.active) {
+      ctx.fillStyle = "black";
+      ctx.fillRect(this.x, this.y, this.width, this.height);
+    } else {
+      if (this.image.complete) {
+        // ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+      } else {
+        this.image.onload = () => {
+          // ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        };
+      }
+    }
   }
 
   moveToTarget(targetX, targetY) {

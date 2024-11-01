@@ -1,7 +1,7 @@
 {
-  "player": {
-    "walk": {
-      "left": [
+  "PLAYER": {
+    "WALK": {
+      "LEFT": [
         "../assets/player/walk/left/left_1.png",
         "../assets/player/walk/left/left_2.png",
         "../assets/player/walk/left/left_3.png",
@@ -11,7 +11,7 @@
         "../assets/player/walk/left/left_7.png",
         "../assets/player/walk/left/left_8.png"
       ],
-      "right": [
+      "RIGHT": [
         "../assets/player/walk/right/right_1.png",
         "../assets/player/walk/right/right_2.png",
         "../assets/player/walk/right/right_3.png",
@@ -21,7 +21,7 @@
         "../assets/player/walk/right/right_7.png",
         "../assets/player/walk/right/right_8.png"
       ],
-      "up": [
+      "UP": [
         "../assets/player/walk/up/up_1.png",
         "../assets/player/walk/up/up_2.png",
         "../assets/player/walk/up/up_3.png",
@@ -31,7 +31,7 @@
         "../assets/player/walk/up/up_7.png",
         "../assets/player/walk/up/up_8.png"
       ],
-      "down": [
+      "DOWN": [
         "../assets/player/walk/down/down_1.png",
         "../assets/player/walk/down/down_2.png",
         "../assets/player/walk/down/down_3.png",
@@ -42,8 +42,8 @@
         "../assets/player/walk/down/down_8.png"
       ]
     },
-    "idle": {
-      "left": [
+    "IDLE": {
+      "LEFT": [
         "../assets/player/idle/left/left_1.png",
         "../assets/player/idle/left/left_2.png",
         "../assets/player/idle/left/left_3.png",
@@ -53,7 +53,7 @@
         "../assets/player/idle/left/left_7.png",
         "../assets/player/idle/left/left_8.png"
       ],
-      "right": [
+      "RIGHT": [
         "../assets/player/idle/right/right_1.png",
         "../assets/player/idle/right/right_2.png",
         "../assets/player/idle/right/right_3.png",
@@ -63,7 +63,7 @@
         "../assets/player/idle/right/right_7.png",
         "../assets/player/idle/right/right_8.png"
       ],
-      "up": [
+      "UP": [
         "../assets/player/idle/up/up_1.png",
         "../assets/player/idle/up/up_2.png",
         "../assets/player/idle/up/up_3.png",
@@ -73,7 +73,7 @@
         "../assets/player/idle/up/up_7.png",
         "../assets/player/idle/up/up_8.png"
       ],
-      "down": [
+      "DOWN": [
         "../assets/player/idle/down/down_1.png",
         "../assets/player/idle/down/down_2.png",
         "../assets/player/idle/down/down_3.png",
@@ -84,8 +84,8 @@
         "../assets/player/idle/down/down_8.png"
       ]
     },
-    "attack": {
-      "left": [
+    "ATTACK": {
+      "LEFT": [
         "../assets/player/attack/left/left_1.png",
         "../assets/player/attack/left/left_2.png",
         "../assets/player/attack/left/left_3.png",
@@ -95,7 +95,7 @@
         "../assets/player/attack/left/left_7.png",
         "../assets/player/attack/left/left_8.png"
       ],
-      "right": [
+      "RIGHT": [
         "../assets/player/attack/right/right_1.png",
         "../assets/player/attack/right/right_2.png",
         "../assets/player/attack/right/right_3.png",
@@ -105,7 +105,7 @@
         "../assets/player/attack/right/right_7.png",
         "../assets/player/attack/right/right_8.png"
       ],
-      "up": [
+      "UP": [
         "../assets/player/attack/up/up_1.png",
         "../assets/player/attack/up/up_2.png",
         "../assets/player/attack/up/up_3.png",
@@ -115,7 +115,7 @@
         "../assets/player/attack/up/up_7.png",
         "../assets/player/attack/up/up_8.png"
       ],
-      "down": [
+      "DOWN": [
         "../assets/player/attack/down/down_1.png",
         "../assets/player/attack/down/down_2.png",
         "../assets/player/attack/down/down_3.png",
@@ -127,38 +127,38 @@
       ]
     }
   },
-  "weapon": {
-    "default": "../assets/gun/gun.png"
+  "WEAPON": {
+    "DEFAULT": "../assets/gun/gun.png"
   },
-  "cars" : {
-    "brown" : {
-      "broken" : "../assets/cars/brown/broken.png",
-      "horizontal" : "../assets/cars/brown/horizontal.png"
+  "CARS": {
+    "BROWN": {
+      "BROKEN": "../assets/cars/brown/broken.png",
+      "HORIZONTAL": "../assets/cars/brown/horizontal.png"
     },
-    "drive" : {
-      "down_left" : "assets/cars/drive/down_left.png",
-      "down_right" : "assets/cars/drive/down_right.png",
-      "down" : "assets/cars/drive/down.png",
-      "left" : "assets/cars/drive/left.png",
-      "right" : "assets/cars/drive/right.png",
-      "up_left" : "assets/cars/drive/up_left.png",
-      "up_right" : "assets/cars/drive/up_right.png",
-      "up" : "assets/cars/drive/up.png"
-    },
-    "grey": {
-      "broken" : "../assets/cars/grey/broken.png",
-      "horizontal" : "../assets/cars/grey/horizontal.png",
-      "vertical" : "../assets/cars/grey/vertical.png"
-    },
-    "red" : {
-      "horizontal" : "../assets/cars/red/horizontal.png",
-      "vertical" : "../assets/cars/red/vertical.png",
-      "with_zombie" : "../assets/cars/red/with_zombie.png"
-    },
-    "tires" : {
-      "1tires" : "../assets/cars/tires/1tires.png",
-      "2tires" : "../assets/cars/tires/2tires.png",
-      "3tires" : "../assets/cars/tires/3tires.png"
+    "DRIVE": {
+      "DOWN_LEFT": "assets/cars/drive/down_left.png",
+      "DOWN_RIGHT": "assets/cars/drive/down_right.png",
+      "DOWN": "assets/cars/drive/down.png",
+      "LEFT": "assets/cars/drive/left.png",
+      "RIGHT": "assets/cars/drive/right.png",
+      "UP_LEFT": "assets/cars/drive/up_left.png",
+      "UP_RIGHT": "assets/cars/drive/up_right.png",
+      "UP": "assets/cars/drive/up.png",
+      "GREY": {
+        "BROKEN": "../assets/cars/grey/broken.png",
+        "HORIZONTAL": "../assets/cars/grey/horizontal.png",
+        "VERTICAL": "../assets/cars/grey/vertical.png"
+      },
+      "RED": {
+        "HORIZONTAL": "../assets/cars/red/horizontal.png",
+        "VERTICAL": "../assets/cars/red/vertical.png",
+        "WITH_ZOMBIE": "../assets/cars/red/with_zombie.png"
+      },
+      "TIRES": {
+        "1TIRES": "../assets/cars/tires/1tires.png",
+        "2TIRES": "../assets/cars/tires/2tires.png",
+        "3TIRES": "../assets/cars/tires/3tires.png"
+      }
     }
   }
 }

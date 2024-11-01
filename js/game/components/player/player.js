@@ -6,6 +6,8 @@ import { PlayerMovement } from "./utils/playerMovement.js";
 import { PlayerShooting } from "./utils/playerShooting.js";
 import { drawTerrainChunks } from "../loader/map.js";
 import { getMidPosition } from "../helper/calculator.js";
+import { fetchAssets } from "../helper/renderer.js";
+import { ASSETS } from "../loader/assets.js";
 
 export class Player extends Entities {
   constructor(x, y, width, height, speed) {
@@ -14,10 +16,10 @@ export class Player extends Entities {
     this.health = 100;
     this.scaleX = 3;
     this.scaleY = 3;
-
     this.playerMovement = new PlayerMovement(this);
     this.playerShooting = new PlayerShooting(this);
 
+    this.currentState = "idle";
     this.sprites = [];
     this.currentFrame = 0;
     this.frameTime = 100;
@@ -34,8 +36,6 @@ export class Player extends Entities {
     window.addEventListener("mousedown", this.getPlayerShooting().handleMouseDown.bind(this.playerShooting));
     window.addEventListener("mousemove", this.getPlayerShooting().handleMouseMove.bind(this.playerShooting));
     
-
-    this.loadSprites();
   }
 
   setAngle(angle){
@@ -56,11 +56,11 @@ export class Player extends Entities {
 
 
   loadSprites() {
-    for (let i = 1; i <= 8; i++) {
-      const img = new Image();
-      img.src = `../../../../assets/player/walk/left/player_gun_walk_${i}.png`;
-      this.sprites.push(img);
-    }
+    // for (let i = 1; i <= 8; i++) {
+    //   const img = new Image();
+    //   img.src = `../../../../assets/player/walk/left/player_gun_walk_${i}.png`;
+    //   this.sprites.push(img);
+    // }
   }
 
   update(ghost) {
@@ -93,13 +93,13 @@ export class Player extends Entities {
     this.getPlayerShooting().drawEachBullet();
 
     this.updateFrame();
-    ctx.drawImage(
-      this.sprites[this.currentFrame],
-      getMidPosition(this.x, this.width / 2* 3),
-      getMidPosition(this.y, this.height / 2* 3),
-      this.width * 3,
-      this.height * 3 
-    );
+    // ctx.drawImage(
+    //   this.sprites[this.currentFrame],
+    //   getMidPosition(this.x, this.width / 2* 3),
+    //   getMidPosition(this.y, this.height / 2* 3),
+    //   this.width * 3,
+    //   this.height * 3 
+    // );
 
     this.getPlayerShooting().drawGun();
   }

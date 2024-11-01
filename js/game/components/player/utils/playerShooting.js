@@ -91,7 +91,7 @@ export class PlayerShooting {
   }
 
   drawEachBullet() {
-    this.bullets.forEach(    (bullet) => bullet.draw());
+    this.bullets.forEach((bullet) => bullet.draw());
   }
 
   drawGun() {
@@ -105,13 +105,13 @@ export class PlayerShooting {
     ctx.translate(playerCenterX, playerCenterY);
     ctx.rotate(this.player.getAngle());
 
-    ctx.drawImage(
-      this.gunImage,
-      -this.gunImage.width ,
-      -this.gunImage.height ,
-      this.gunImage.width * 3,
-      this.gunImage.height * 3
-    );
+    // ctx.drawImage(
+    //   this.gunImage,
+    //   -this.gunImage.width ,
+    //   -this.gunImage.height ,
+    //   this.gunImage.width * 3,
+    //   this.gunImage.height * 3
+    // );
 
     ctx.restore();
   }

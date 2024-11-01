@@ -31,14 +31,3 @@ export async function loadAssets() {
 
   return assets; 
 }
-
-
-export class Asset{
-  constructor(){
-    this.asset = loadAssets();
-  }
-
-  getAsset(){
-    return this.asset;
-  }
-}
