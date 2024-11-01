@@ -3,6 +3,7 @@ import { isPointInBox } from "../../boxes/boxes.js";
 import { player } from "../../../game.js";
 import { ghost } from "../../../game.js";
 import { flashlightSetting } from "../../../setting.js";
+import { COMPONENT_SCALE,getNearbyComponents } from "../../loader/map.js";
 
 export class Flashlight {
   constructor() {
@@ -34,13 +35,14 @@ export class Flashlight {
   }
 
   draw(keys) {
-    // console.log(player.x)
     if (!this.isOn) return;
 
     this.updateRotation(keys);
     const centerX = player.x + player.width / 4;
     const centerY = player.y + player.height / 2;
     let ghostHit = false;
+
+    const nearbyComponents = getNearbyComponents(player, this.radius);
 
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
@@ -49,40 +51,46 @@ export class Flashlight {
     const cosSinCache = [];
 
     for (let i = 0; i < this.steps; i++) {
-      const angle = this.rotation + (-this.angle + angleStep * i);
+        const angle = this.rotation + (-this.angle + angleStep * i);
 
-      if (!cosSinCache[i]) {
-        cosSinCache[i] = { cos: Math.cos(angle), sin: Math.sin(angle) };
-      }
-
-      const { cos, sin } = cosSinCache[i];
-      let x = centerX;
-      let y = centerY;
-
-      for (let r = 0; r < this.radius; r += 1) {
-        const nextX = centerX + r * cos;
-        const nextY = centerY + r * sin;
-
-        if (ghost.isPointInGhost(nextX, nextY)) {
-          ghostHit = true;
-          ghost.color = "green";
+        if (!cosSinCache[i]) {
+            cosSinCache[i] = { cos: Math.cos(angle), sin: Math.sin(angle) };
         }
 
-        if (isPointInBox(nextX, nextY)) {
-          x = nextX;
-          y = nextY;
-          break;
+        const { cos, sin } = cosSinCache[i];
+        let x = centerX;
+        let y = centerY;
+
+        for (let r = 0; r < this.radius; r += 1) { 
+            const nextX = centerX + r * cos;
+            const nextY = centerY + r * sin;
+
+            if (ghost.isPointInGhost(nextX, nextY)) {
+                ghostHit = true;
+                ghost.color = "green";
+            }
+
+            const hitComponent = nearbyComponents.some(component => (
+                nextX >= component.x &&
+                nextX <= component.x + component.asset.naturalWidth * COMPONENT_SCALE &&
+                nextY >= component.y &&
+                nextY <= component.y + component.asset.naturalHeight * COMPONENT_SCALE
+            ));
+
+            if (hitComponent || isPointInBox(nextX, nextY)) {
+                x = nextX;
+                y = nextY;
+                break;
+            }
+
+            x = nextX;
+            y = nextY;
         }
 
-        x = nextX;
-        y = nextY;
-      }
-
-      ctx.lineTo(x, y);
+        ctx.lineTo(x, y);
     }
 
     ghost.color = ghostHit ? "green" : "red";
-    // ghost.color = ghostHit ? "green" : "rgba(0,0,0,0)";
 
     ctx.lineTo(centerX, centerY);
     ctx.closePath();
@@ -94,7 +102,8 @@ export class Flashlight {
     ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.globalCompositeOperation = "source-over";
-  }
+}
+
 
   updateFlashlightRotation(e) {
     const playerCenterX = canvas.width / 2;

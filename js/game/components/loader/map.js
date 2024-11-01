@@ -7,6 +7,7 @@ const CHUNK_SIZE = map.chunkSize;
 const VIEW_DISTANCE = 3;
 const COMPONENTS_PER_CHUNK = 5;
 const TILE_SIZE = 30;
+export const COMPONENT_SCALE = 2; 
 let loadedTerrainChunks = new Map();
 let previousChunkX = null;
 let previousChunkY = null;
@@ -126,18 +127,37 @@ export function drawTerrainChunks(player) {
 
       chunk.components.forEach(component => {
         if (
-          component.x + TILE_SIZE > playerOffsetX &&
-          component.y + TILE_SIZE > playerOffsetY &&
+          component.x + TILE_SIZE * COMPONENT_SCALE > playerOffsetX &&
+          component.y + TILE_SIZE * COMPONENT_SCALE > playerOffsetY &&
           component.x < playerOffsetX + visibleWidth &&
           component.y < playerOffsetY + visibleHeight
         ) {
           ctx.drawImage(
             component.asset,
             component.x,
-            component.y
+            component.y,
+            component.asset.naturalWidth * COMPONENT_SCALE,
+            component.asset.naturalHeight * COMPONENT_SCALE
           );
         }
       });
     }
   }
 }
+
+export function getNearbyComponents(player, radius) {
+  const nearbyComponents = [];
+  for (let [key, chunk] of loadedTerrainChunks) {
+    chunk.components.forEach(component => {
+      const dx = component.x - player.x;
+      const dy = component.y - player.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance <= radius) {
+        nearbyComponents.push(component);
+      }
+    });
+  }
+  return nearbyComponents;
+}
+

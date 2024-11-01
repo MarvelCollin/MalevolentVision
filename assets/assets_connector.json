@@ -183,16 +183,6 @@
       "../assets/floor/blood_stain/blood_stain_4.png",
       "../assets/floor/blood_stain/blood_stain_5.png"
     ],
-    "GRASS" : [
-      "../assets/floor/grass/grass_1.png",
-      "../assets/floor/grass/grass_2.png",
-      "../assets/floor/grass/grass_3.png",
-      "../assets/floor/grass/grass_4.png",
-      "../assets/floor/grass/grass_5.png",
-      "../assets/floor/grass/grass_6.png",
-      "../assets/floor/grass/grass_7.png",
-      "../assets/floor/grass/grass_8.png"
-    ],
     "SCARECROW" : "../assets/floor/scarecrow/scarecrow.png",
     "TERRAIN" : [
       "../assets/floor/terrain/terrain_1.png",

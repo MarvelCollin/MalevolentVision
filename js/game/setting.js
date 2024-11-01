@@ -5,7 +5,7 @@ export const ghostSetting = {
 
 export const playerSetting = {
     scale: 3,
-    speed: 5,
+    speed: 2,
     maxAmmo: 50,
     shootCooldown: 200,
     dashSpeed: 20,
