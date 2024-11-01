@@ -57,6 +57,7 @@ function start() {
   updateCamera(); 
   flashlight.updateFlashlightRotation(clientMouse);
   drawScene();
+  console.log(player.direction)
   requestAnimationFrame(start);
 }
 

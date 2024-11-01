@@ -1,5 +1,6 @@
 import { ctx, canvas } from "../../ctx.js";
 import { boxes } from "../boxes/boxes.js";
+import { DIRECTION, STATUS } from "../../setting.js";
 
 export class Entities {
   constructor(x, y, width, height, speed) {
@@ -8,31 +9,44 @@ export class Entities {
     this.width = width;
     this.height = height;
     this.speed = speed;
+    this.direction = DIRECTION.DOWN;
+    this.status = STATUS.IDLE;
   }
 
-  getEntityX(){
+  setDirection(direction) {
+    this.direction = direction;
+  }
+
+  getDirection() {
+    return this.direction;
+  }
+
+  setStatus(status) {
+    this.status = status;
+  }
+
+  getStatus() {
+    return this.status;
+  }
+
+  getEntityX() {
     return this.x;
   }
 
-  getEntityY(){
+  getEntityY() {
     return this.y;
   }
 
-  getEntityWidth(){
+  getEntityWidth() {
     return this.width;
   }
 
-  getEntityHeight(){
+  getEntityHeight() {
     return this.height;
   }
 
-  getEntitySpeed(){
+  getEntitySpeed() {
     return this.speed;
-  }
-
-  draw(color = "blue") {
-    ctx.fillStyle = color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 
   willCollide(newX, newY) {
@@ -63,13 +77,23 @@ export class Entities {
     const newX = keys["a"]
       ? this.x - this.speed
       : keys["d"]
-      ? this.x + this.speed
-      : this.x;
+        ? this.x + this.speed
+        : this.x;
     const newY = keys["w"]
       ? this.y - this.speed
       : keys["s"]
-      ? this.y + this.speed
-      : this.y;
+        ? this.y + this.speed
+        : this.y;
+
+    if(keys["a"]){
+      this.direction = DIRECTION.LEFT;
+    } else if(keys["d"]){
+      this.direction = DIRECTION.RIGHT;
+    } else if(keys["s"]){
+      this.direction = DIRECTION.DOWN;
+    } else if(keys["w"]){
+      this.direction = DIRECTION.UP;
+    }
 
     if (!this.willCollide(newX, this.y)) {
       this.x = newX;

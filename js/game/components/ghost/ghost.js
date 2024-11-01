@@ -1,7 +1,7 @@
 import { canvas, ctx } from "../../ctx.js";
 import { boxes } from "../boxes/boxes.js";
 import { Entities } from "../entities/entity.js";
-import { Assets } from "../loader/assets.js";
+import { ASSETS } from "../loader/assets.js";
 
 export class Ghost extends Entities {
   constructor(x, y, width, height, speed, color) {
@@ -15,7 +15,7 @@ export class Ghost extends Entities {
     this.setRandomBehavior = this.setRandomBehavior.bind(this);
 
     this.image = new Image();
-    this.image.src = "../../../../assets/Layer 19.png";
+    this.image.src = ASSETS.ENEMY.DEAD.POSITION1[1];
     this.width = this.image.width * 3;
     this.height = this.image.height * 3;
 
@@ -90,10 +90,10 @@ export class Ghost extends Entities {
       ctx.fillRect(this.x, this.y, this.width, this.height);
     } else {
       if (this.image.complete) {
-        // ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
       } else {
         this.image.onload = () => {
-          // ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+          ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
         };
       }
     }

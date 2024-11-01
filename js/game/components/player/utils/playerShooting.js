@@ -1,6 +1,7 @@
 import { playerSetting } from "../../../setting.js";
 import { ctx, canvas } from "../../../ctx.js";
 import { Bullet } from "../tools/bullet.js";
+import { ASSETS } from "../../loader/assets.js";
 
 export class PlayerShooting {
   constructor(player) {
@@ -8,7 +9,7 @@ export class PlayerShooting {
 
     this.bullets = [];
     this.gunImage = new Image();
-    this.gunImage.src = "../../../../assets/gun/gun.png";
+    this.gunImage.src = ASSETS.WEAPON.GUN;
     this.maxAmmo = playerSetting.maxAmmo;
     this.currentAmmo = this.maxAmmo;
     this.lastShotTime = 0;

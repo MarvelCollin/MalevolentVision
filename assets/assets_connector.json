@@ -128,7 +128,7 @@
     }
   },
   "WEAPON": {
-    "DEFAULT": "../assets/gun/gun.png"
+    "GUN": "../assets/weapon/gun/gun.png"
   },
   "CARS": {
     "BROWN": {
@@ -159,6 +159,20 @@
         "2TIRES": "../assets/cars/tires/2tires.png",
         "3TIRES": "../assets/cars/tires/3tires.png"
       }
+    }
+  },
+  "ENEMY": {
+    "DEAD": {
+      "POSITION1": [
+        "../assets/enemy/dead/position1/position1_1.png",
+        "../assets/enemy/dead/position1/position1_2.png",
+        "../assets/enemy/dead/position1/position1_3.png"
+      ],
+      "POSITION2": [
+        "../assets/enemy/dead/position1/position2_1.png",
+        "../assets/enemy/dead/position1/position2_2.png",
+        "../assets/enemy/dead/position1/position2_3.png"
+      ]
     }
   }
 }

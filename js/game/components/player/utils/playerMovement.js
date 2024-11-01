@@ -1,4 +1,5 @@
 import { playerSetting } from "../../../setting.js";
+import { STATUS, DIRECTION } from "../../../setting.js";
 
 export class PlayerMovement {
   constructor(player) {
@@ -15,39 +16,39 @@ export class PlayerMovement {
     this.doublePressThreshold = 250;
   }
 
-  getDashSpeed(){
+  getDashSpeed() {
     return this.dashSpeed;
   }
 
-  getDashDuration(){
+  getDashDuration() {
     return this.dashDuration;
   }
 
-  getDashing(){
+  getDashing() {
     return this.dashing;
   }
 
-  getDashStartTime(){
+  getDashStartTime() {
     return this.dashStartTime;
   }
 
-  getDashDirection(){
+  getDashDirection() {
     return this.dashDirection;
   }
 
-  getDashCooldown(){
+  getDashCooldown() {
     return this.dashCooldown;
   }
 
-  getlastDashTime(){
+  getlastDashTime() {
     return this.lastDashTime;
   }
 
-  getKeySequence(){
+  getKeySequence() {
     return this.keySequence;
   }
 
-  getDoublePressThreshold(){
+  getDoublePressThreshold() {
     return this.doublePressThreshold;
   }
 
@@ -66,7 +67,9 @@ export class PlayerMovement {
     const currentTime = Date.now();
 
     if (["w", "a", "s", "d"].includes(key)) {
-      if (!this.keySequence[key] ) {
+      this.player.setStatus(STATUS.WALK);
+
+      if (!this.keySequence[key]) {
         this.keySequence[key] = { count: 0, lastKeyUpTime: 0 };
       }
 
@@ -96,6 +99,7 @@ export class PlayerMovement {
 
     if (["w", "a", "s", "d"].includes(key)) {
       if (this.keySequence[key]) {
+        this.player.setStatus(STATUS.IDLE);
         this.keySequence[key].lastKeyUpTime = currentTime;
       }
     }
@@ -103,7 +107,6 @@ export class PlayerMovement {
 
   dash(direction) {
     const currentTime = Date.now();
-    console.log("aaaaa")
     if (currentTime - this.lastDashTime >= this.dashCooldown) {
       this.dashing = true;
       this.dashStartTime = currentTime;
@@ -112,15 +115,19 @@ export class PlayerMovement {
       switch (direction) {
         case "w":
           this.dashDirection = { x: 0, y: -1 };
+          this.player.setDirection(DIRECTION.UP);
           break;
         case "a":
           this.dashDirection = { x: -1, y: 0 };
+          this.player.setDirection(DIRECTION.LEFT);
           break;
         case "s":
           this.dashDirection = { x: 0, y: 1 };
+          this.player.setDirection(DIRECTION.DOWN);
           break;
         case "d":
           this.dashDirection = { x: 1, y: 0 };
+          this.player.setDirection(DIRECTION.RIGHT);
           break;
       }
     }
@@ -137,5 +144,5 @@ export class PlayerMovement {
   }
 
 
-  
+
 }

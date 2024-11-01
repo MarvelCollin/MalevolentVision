@@ -1,7 +1,7 @@
 import { Bullet } from "./tools/bullet.js";
 import { Entities } from "../entities/entity.js";
 import { ctx, canvas } from "../../ctx.js";
-import { playerSetting } from "../../setting.js";
+import { playerSetting, DIRECTION, STATUS } from "../../setting.js";
 import { PlayerMovement } from "./utils/playerMovement.js";
 import { PlayerShooting } from "./utils/playerShooting.js";
 import { drawTerrainChunks } from "../loader/map.js";
@@ -19,30 +19,29 @@ export class Player extends Entities {
     this.playerMovement = new PlayerMovement(this);
     this.playerShooting = new PlayerShooting(this);
 
-    this.currentState = "idle";
+    this.source = ASSETS.PLAYER.IDLE.LEFT;
     this.sprites = [];
     this.currentFrame = 0;
     this.frameTime = 100;
     this.lastFrameTime = Date.now();
-
-    window.addEventListener(
-      "keydown",
-      this.getPlayerMovement().handleKeyDown.bind(this.playerMovement)
-    );
-    window.addEventListener(
-      "keyup",
-      this.getPlayerMovement().handleKeyUp.bind(this.playerMovement)
-    );
-    window.addEventListener("mousedown", this.getPlayerShooting().handleMouseDown.bind(this.playerShooting));
-    window.addEventListener("mousemove", this.getPlayerShooting().handleMouseMove.bind(this.playerShooting));
     
+    this.initializeEventListeners();
+    this.loadSprites();
   }
 
-  setAngle(angle){
+  getSource() {
+    return this.source;
+  }
+
+  setSource(source) {
+    this.source = source;
+  }
+
+  setAngle(angle) {
     this.angle = angle;
   }
 
-  getAngle(){
+  getAngle() {
     return this.angle;
   }
 
@@ -50,34 +49,38 @@ export class Player extends Entities {
     return this.playerMovement;
   }
 
-  getPlayerShooting(){
+  getPlayerShooting() {
     return this.playerShooting;
   }
 
+  initializeEventListeners() {
+    window.addEventListener("keydown", (e) => this.playerMovement.handleKeyDown(e));
+    window.addEventListener("keyup", (e) => this.playerMovement.handleKeyUp(e));
+    window.addEventListener("mousedown", (e) => this.playerShooting.handleMouseDown(e));
+    window.addEventListener("mousemove", (e) => this.playerShooting.handleMouseMove(e));
+  }
 
   loadSprites() {
-    // for (let i = 1; i <= 8; i++) {
-    //   const img = new Image();
-    //   img.src = `../../../../assets/player/walk/left/player_gun_walk_${i}.png`;
-    //   this.sprites.push(img);
-    // }
+    for(let i = 0; i < this.source.length; i++){
+      const img = new Image();
+      img.src = this.source[i];
+      this.sprites[i] = img;
+    }
   }
 
   update(ghost) {
-    if (
-      this.willCollide(
-        this.x + this.getPlayerMovement().dashDirection.x * 15,
-        this.y + this.getPlayerMovement().dashDirection.y * 15
-      )
-    ) {
-      this.getPlayerMovement().dashing = false;
+    const { dashDirection, dashing } = this.playerMovement;
+    const newPosX = this.x + dashDirection.x * 15;
+    const newPosY = this.y + dashDirection.y * 15;
+
+    if (this.willCollide(newPosX, newPosY)) {
+      this.playerMovement.dashing = false;
     }
 
-    this.getPlayerShooting().updateGun(ghost);
+    this.playerShooting.updateGun(ghost);
 
     if (ghost.isCollidingWithPlayer(this)) {
       this.health -= 10;
-      // console.log("Player health:", this.health);
     }
   }
 
@@ -90,17 +93,25 @@ export class Player extends Entities {
   }
 
   draw() {
-    this.getPlayerShooting().drawEachBullet();
-
+    this.playerShooting.drawEachBullet();
     this.updateFrame();
-    // ctx.drawImage(
-    //   this.sprites[this.currentFrame],
-    //   getMidPosition(this.x, this.width / 2* 3),
-    //   getMidPosition(this.y, this.height / 2* 3),
-    //   this.width * 3,
-    //   this.height * 3 
-    // );
+    this.updateStatus();
+    ctx.drawImage(
+      this.sprites[this.currentFrame],
+      getMidPosition(this.x, this.width * 1.5),
+      getMidPosition(this.y, this.height * 1.5),
+      this.width * 2,
+      this.height * 2
+    );
 
-    this.getPlayerShooting().drawGun();
+    this.playerShooting.drawGun();
+  }
+
+  updateStatus() {
+    const directionAssets = ASSETS.PLAYER[this.status];
+    if (directionAssets?.[this.direction]) {
+      this.setSource(directionAssets[this.direction]);
+    }
+    this.loadSprites();
   }
 }
