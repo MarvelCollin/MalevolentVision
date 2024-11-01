@@ -174,5 +174,62 @@
         "../assets/enemy/dead/position1/position2_3.png"
       ]
     }
+  },
+  "FLOOR" : {
+    "BLOOD_STAIN" : [
+      "../assets/floor/blood_stain/blood_stain_1.png",
+      "../assets/floor/blood_stain/blood_stain_2.png",
+      "../assets/floor/blood_stain/blood_stain_3.png",
+      "../assets/floor/blood_stain/blood_stain_4.png",
+      "../assets/floor/blood_stain/blood_stain_5.png"
+    ],
+    "GRASS" : [
+      "../assets/floor/grass/grass_1.png",
+      "../assets/floor/grass/grass_2.png",
+      "../assets/floor/grass/grass_3.png",
+      "../assets/floor/grass/grass_4.png",
+      "../assets/floor/grass/grass_5.png",
+      "../assets/floor/grass/grass_6.png",
+      "../assets/floor/grass/grass_7.png",
+      "../assets/floor/grass/grass_8.png"
+    ],
+    "SCARECROW" : "../assets/floor/scarecrow/scarecrow.png",
+    "TERRAIN" : [
+      "../assets/floor/terrain/terrain_1.png",
+      "../assets/floor/terrain/terrain_2.png",
+      "../assets/floor/terrain/terrain_3.png",
+      "../assets/floor/terrain/terrain_4.png",
+      "../assets/floor/terrain/terrain_5.png",
+      "../assets/floor/terrain/terrain_6.png"
+    ],
+    "TOMBSTONE" : "../assets/floor/tombstone/tombstone.png",
+    "TREE" : [
+      "../assets/floor/tree/tree_1.png",
+      "../assets/floor/tree/tree_2.png",
+      "../assets/floor/tree/tree_3.png",
+      "../assets/floor/tree/tree_4.png",
+      "../assets/floor/tree/tree_5.png",
+      "../assets/floor/tree/tree_6.png",
+      "../assets/floor/tree/tree_7.png",
+      "../assets/floor/tree/tree_8.png",
+      "../assets/floor/tree/tree_9.png"
+    ],
+    "URBAN" : [
+      "../assets/floor/urban/urban_1.png",
+      "../assets/floor/urban/urban_2.png",
+      "../assets/floor/urban/urban_3.png",
+      "../assets/floor/urban/urban_4.png",
+      "../assets/floor/urban/urban_5.png",
+      "../assets/floor/urban/urban_6.png",
+      "../assets/floor/urban/urban_7.png",
+      "../assets/floor/urban/urban_8.png",
+      "../assets/floor/urban/urban_9.png",
+      "../assets/floor/urban/urban_10.png",
+      "../assets/floor/urban/urban_11.png",
+      "../assets/floor/urban/urban_12.png",
+      "../assets/floor/urban/urban_13.png",
+      "../assets/floor/urban/urban_14.png",
+      "../assets/floor/urban/urban_15.png"
+    ]
   }
 }

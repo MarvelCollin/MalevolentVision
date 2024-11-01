@@ -49,5 +49,6 @@ export const STATUS = {
     ATTACK1: "ATTACK1",
     ATTACK2: "ATTACK2",
     DASH: "DASH",
-    DAMAGED: "DAMAGED"
+    DAMAGED: "DAMAGED",
+    DIE: "DIEaw"
 }
