@@ -175,43 +175,46 @@
       ]
     }
   },
-  "FLOOR" : {
-    "SCARECROW" : "../assets/floor/scarecrow/scarecrow.png",
-    "TERRAIN" : [
-      "../assets/floor/terrain/terrain_1.png",
-      "../assets/floor/terrain/terrain_2.png",
-      "../assets/floor/terrain/terrain_3.png",
-      "../assets/floor/terrain/terrain_4.png",
-      "../assets/floor/terrain/terrain_5.png",
-      "../assets/floor/terrain/terrain_6.png"
-    ],
-    "TOMBSTONE" : "../assets/floor/tombstone/tombstone.png",
-    "TREE" : [
-      "../assets/floor/tree/tree_1.png",
-      "../assets/floor/tree/tree_2.png",
-      "../assets/floor/tree/tree_3.png",
-      "../assets/floor/tree/tree_4.png",
-      "../assets/floor/tree/tree_5.png",
-      "../assets/floor/tree/tree_6.png",
-      "../assets/floor/tree/tree_7.png",
-      "../assets/floor/tree/tree_8.png",
-      "../assets/floor/tree/tree_9.png"
-    ],
-    "URBAN" : [
-      "../assets/floor/urban/urban_1.png",
-      "../assets/floor/urban/urban_2.png",
-      "../assets/floor/urban/urban_3.png",
-      "../assets/floor/urban/urban_4.png",
-      "../assets/floor/urban/urban_5.png",
-      "../assets/floor/urban/urban_6.png",
-      "../assets/floor/urban/urban_7.png",
-      "../assets/floor/urban/urban_8.png",
-      "../assets/floor/urban/urban_9.png",
-      "../assets/floor/urban/urban_10.png",
-      "../assets/floor/urban/urban_11.png",
-      "../assets/floor/urban/urban_12.png",
-      "../assets/floor/urban/urban_13.png",
-      "../assets/floor/urban/urban_14.png",
+  "ENVIRONMENT": {
+    "STRUCTURE": {},
+    "TERRAIN": {
+      "TREE": [
+        "../assets/environment/terrain/tree/tree_1.png",
+        "../assets/environment/terrain/tree/tree_2.png",
+        "../assets/environment/terrain/tree/tree_3.png",
+        "../assets/environment/terrain/tree/tree_4.png",
+        "../assets/environment/terrain/tree/tree_5.png",
+        "../assets/environment/terrain/tree/tree_6.png",
+        "../assets/environment/terrain/tree/tree_7.png",
+        "../assets/environment/terrain/tree/tree_8.png",
+        "../assets/environment/terrain/tree/tree_9.png"
+      ],
+      "URBAN": [
+        "../assets/environment/terrain/urban/urban_1.png",
+        "../assets/environment/terrain/urban/urban_2.png",
+        "../assets/environment/terrain/urban/urban_3.png",
+        "../assets/environment/terrain/urban/urban_4.png",
+        "../assets/environment/terrain/urban/urban_5.png",
+        "../assets/environment/terrain/urban/urban_6.png",
+        "../assets/environment/terrain/urban/urban_7.png",
+        "../assets/environment/terrain/urban/urban_8.png",
+        "../assets/environment/terrain/urban/urban_9.png",
+        "../assets/environment/terrain/urban/urban_10.png",
+        "../assets/environment/terrain/urban/urban_11.png",
+        "../assets/environment/terrain/urban/urban_12.png",
+        "../assets/environment/terrain/urban/urban_13.png",
+        "../assets/environment/terrain/urban/urban_14.png",
+        "../assets/environment/terrain/urban/urban_15.png",
+        "../assets/environment/terrain/urban/urban_16.png"
+      ]
+    },
+    "TILE": [
+      "../assets/environment/tile/terrain_1.png",
+      "../assets/environment/tile/terrain_2.png",
+      "../assets/environment/tile/terrain_3.png",
+      "../assets/environment/tile/terrain_4.png",
+      "../assets/environment/tile/terrain_5.png",
+      "../assets/environment/tile/terrain_6.png"
     ]
   }
 }

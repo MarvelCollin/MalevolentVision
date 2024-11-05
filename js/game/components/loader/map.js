@@ -24,8 +24,8 @@ function preloadImage(src) {
 
 function getRandomAsset() {
   const allAssets = [];
-  for (let type in ASSETS.FLOOR) {
-    const assets = ASSETS.FLOOR[type];
+  for (let type in ASSETS.ENVIRONMENT.TERRAIN) {
+    const assets = ASSETS.ENVIRONMENT.TERRAIN[type];
     if (Array.isArray(assets)) {
       allAssets.push(...assets);
     } else {
@@ -36,7 +36,7 @@ function getRandomAsset() {
 }
 
 function getRandomTerrainTile() {
-  const terrainAssets = ASSETS.FLOOR.TERRAIN;
+  const terrainAssets = ASSETS.ENVIRONMENT.TILE;
   return terrainAssets[getRandomInt(0, terrainAssets.length - 1)];
 }
 
