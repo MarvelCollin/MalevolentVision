@@ -176,13 +176,6 @@
     }
   },
   "FLOOR" : {
-    "BLOOD_STAIN" : [
-      "../assets/floor/blood_stain/blood_stain_1.png",
-      "../assets/floor/blood_stain/blood_stain_2.png",
-      "../assets/floor/blood_stain/blood_stain_3.png",
-      "../assets/floor/blood_stain/blood_stain_4.png",
-      "../assets/floor/blood_stain/blood_stain_5.png"
-    ],
     "SCARECROW" : "../assets/floor/scarecrow/scarecrow.png",
     "TERRAIN" : [
       "../assets/floor/terrain/terrain_1.png",
@@ -219,7 +212,6 @@
       "../assets/floor/urban/urban_12.png",
       "../assets/floor/urban/urban_13.png",
       "../assets/floor/urban/urban_14.png",
-      "../assets/floor/urban/urban_15.png"
     ]
   }
 }
